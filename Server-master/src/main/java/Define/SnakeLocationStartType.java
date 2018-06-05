@@ -1,0 +1,8 @@
+package Define;
+
+public enum SnakeLocationStartType {
+    START_AT_TOP_LEFT_LOCATION,
+    START_AT_TOP_RIGHT_LOCATION,
+    START_AT_BOTTON_LEFT_LOCATION,
+    START_AT_BOTTON_RIGHT_LOCATION
+}
