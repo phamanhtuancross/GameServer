@@ -147,6 +147,13 @@ public class TcpConnection implements Runnable{
                         System.out.println("connecting " + connecting);
                         break;
                     }
+                    case MessageType.SEND_REMOVED_GAME:{
+                        String roomCode = serverMessage.data;
+                        int idInRoom = serverMessage.id;
+
+                        server.setRemovedForClientBy(roomCode,idInRoom);
+                        break;
+                    }
                     case MessageType.GET_CHARACTER: {
                         break;
                     }

@@ -328,7 +328,7 @@ public class Server {
         for (RoomGameObject room : roomGames) {
             if (code.equals(room.code)){
                room.addCharacter(character);
-               return room.getNumberIndex() - 1;
+               return room.fullCharacter.size() - 1;
             }
         }
         return -1;
@@ -399,6 +399,14 @@ public class Server {
             if(listOnlinePlayer.get(index).Id == clientId){
                 listOnlinePlayer.remove(index);
                 return;
+            }
+        }
+    }
+
+    public void setRemovedForClientBy(String roomCode, int idInRoom){
+        for(RoomGameObject room : roomGames){
+            if(room.code.equals(roomCode)){
+                room.setRemovedStaeByID(idInRoom);
             }
         }
     }

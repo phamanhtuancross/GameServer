@@ -36,7 +36,7 @@ public class Snake {
 
 
             if(checkIsCollisionWithAnotherSnake(character)){
-                System.out.println("collisions...");
+
                 this.isRemoved = true;
             }
             if(!character.isRemoved) {

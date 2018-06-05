@@ -16,9 +16,9 @@ import java.util.List;
 public class RoomGameObject {
     public int IDs = 0;
     public String code;
-    public List<Snake> fullCharacter;
-    public WrapList map;
-    public WrapList gamePlay;
+    public List<Snake> fullCharacter = null;
+    public WrapList map = null;
+    public WrapList gamePlay = null;
     public boolean isRunning;
     public boolean isFinished;
     private int numberIndex  = 0;
@@ -49,14 +49,14 @@ public class RoomGameObject {
         this.map = new WrapList();
         this.isFinished = false;
         this.isRunning = false;
+        numberIndex  = 0;
     }
 
     public boolean addCharacter(Snake character){
-        if(fullCharacter.size() < 4){
-            character.Id = numberIndex;
+        if(fullCharacter!= null && fullCharacter.size() < 4){
+            character.Id = fullCharacter.size();
             this.fullCharacter.add(character);
             numberIndex++;
-
             return true;
         }
         
@@ -68,6 +68,37 @@ public class RoomGameObject {
             if(fullCharacter.get(index).Id == Id){
                 fullCharacter.remove(index);
                 return ;
+            }
+        }
+    }
+
+    public int getIsFinishsedState(){
+        if(!isRunning){
+            return -1;
+        }
+
+        if(fullCharacter.size() > 1){
+            int totalActive = 0;
+            int winnerId = -1;
+            for(int index = 0; index < fullCharacter.size(); index++){
+                if(!fullCharacter.get(index).isRemoved){
+                    totalActive++;
+                    winnerId = index;
+                    if(totalActive > 1){
+                        return -1;
+                    }
+                }
+                return winnerId;
+            }
+        }
+        return -1;
+    }
+
+    public void setRemovedStaeByID(int idInRoom){
+        for(Snake character : fullCharacter){
+            if(character.Id == idInRoom){
+                character.isRemoved = true;
+                return;
             }
         }
     }

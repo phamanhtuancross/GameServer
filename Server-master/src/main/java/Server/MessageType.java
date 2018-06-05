@@ -21,5 +21,6 @@ public class MessageType {
     public final static int SEND_LEAVE_GAME = 18;
     public final static int SEND_LEAVE_ROOM = 19;
     public final static int SEND_DISCONECTING = 20;
+    public final static int SEND_REMOVED_GAME = 21;
 
 }
